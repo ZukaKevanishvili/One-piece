@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Reddit.Entities;
 using Reddit.Models;
 
 namespace Reddit
@@ -12,5 +13,6 @@ namespace Reddit
         public DbSet<Post> Posts { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Communities> Communities { get; set; }
     }
 }

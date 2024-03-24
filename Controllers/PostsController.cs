@@ -4,7 +4,6 @@ using Reddit;
 using Reddit.Dtos;
 using Reddit.Mapper;
 using Reddit.Models;
-
 namespace Reddit.Controllers
 {
     [Route("api/[controller]")]
@@ -77,7 +76,20 @@ namespace Reddit.Controllers
         [HttpPost]
         public async Task<ActionResult<Post>> PostPost(CreatePostDto createPostDto)
         {
-            var post = _mapper.toPost(createPostDto);
+            var community = await _context.Communities.FindAsync(createPostDto.CommunityId);
+            if (community == null)
+            {
+                return NotFound("Community not found");
+            }
+
+            var post = new Post
+            {
+                Title = createPostDto.Title,
+                Content = createPostDto.Content,
+                AuthorId = createPostDto.AuthorId,
+                CommunityId = createPostDto.CommunityId, // Set the CommunityId of the post
+                CreateAt = DateTime.UtcNow // Ensure that the creation date is set
+            };
 
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
