@@ -21,6 +21,6 @@ namespace Reddit.Models
         public DateTime? UpdatedAt { get; set; }
 
         public int CommunityId { get; set; }
-        public Communities Community { get; set; }
+        public virtual Communities Community { get; set; }
     }
 }

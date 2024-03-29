@@ -10,8 +10,7 @@ namespace Reddit.Entities
         public DateTime CreatedAt { get; set; }
 
        
-        public ICollection<Post> Posts { get; set; }
-        public User Owner { get; set; } 
-        public ICollection<User> Users { get; set; } 
+        public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<User> Users { get; set; } 
     }
 }
